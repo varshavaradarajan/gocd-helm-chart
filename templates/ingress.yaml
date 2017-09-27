@@ -2,9 +2,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ .Values.server.name }}-ingress
+  name: {{ .Chart.Name }}-server-ingress
   labels:
-    app: {{ .Values.server.name }}
+    app: {{ .Chart.Name }}-server
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     role: server
@@ -14,7 +14,7 @@ metadata:
     {{- end }}
 spec:
   backend:
-    serviceName: {{ .Values.server.name }}-service
+    serviceName: {{ .Chart.Name }}-server-service
     servicePort: {{ .Values.server.service.httpPort }}
   rules:
     {{- range $host := .Values.server.ingress.hosts }}

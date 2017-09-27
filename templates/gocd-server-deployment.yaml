@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ .Values.server.name }}-deployment
+  name: {{ .Chart.Name }}-server-deployment
   labels:
-    app: {{ .Values.server.name }}
+    app: {{ .Chart.Name }}-server
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     role: server
@@ -12,7 +12,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ .Values.server.name }}
+        app: {{ .Chart.Name }}-server
         chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
         release: {{ .Release.Name }}
         role: server
@@ -27,7 +27,7 @@ spec:
             claimName: {{ .Values.server.persistence.homego.name }}
       {{- end }}
       containers:
-        - name: {{ .Values.server.name}}
+        - name: {{ .Chart.Name }}-server
           image: "{{ .Values.server.image.repository }}:v{{default .Chart.AppVersion .Values.app.version}}"
           imagePullPolicy: {{ .Values.server.image.pullPolicy }}
           ports:

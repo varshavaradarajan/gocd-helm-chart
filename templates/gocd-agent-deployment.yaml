@@ -1,9 +1,9 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: {{ .Values.agent.name }}-deployment
+  name: {{ .Chart.Name }}-agent-deployment
   labels:
-    app: {{ .Values.agent.name }}
+    app: {{ .Chart.Name }}-agent
     chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
     release: {{ .Release.Name }}
     role: agent
@@ -12,13 +12,13 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ .Values.agent.name }}
+        app: {{ .Chart.Name }}-agent
         chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
         release: {{ .Release.Name }}
         role: agent
     spec:
       containers:
-        - name: {{ .Values.agent.name }}
+        - name: {{ .Chart.Name }}-agent
           image: "{{ .Values.agent.image.repository }}:v{{default .Chart.AppVersion .Values.app.version}}"
           imagePullPolicy: {{ .Values.agent.image.pullPolicy }}
           resources:

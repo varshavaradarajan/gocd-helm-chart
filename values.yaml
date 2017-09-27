@@ -5,7 +5,6 @@ app:
   version:
 
 server:
-  name: 'gocd-server'
   replicaCount: 1
   image:
     repository: gocd/gocd-server
@@ -55,7 +54,6 @@ server:
 
 agent:
   replicaCount: 1
-  name: 'gocd-agent'
   image:
     repository: gocd/gocd-agent-alpine-3.6
     pullPolicy: IfNotPresent
