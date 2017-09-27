@@ -36,7 +36,7 @@ server:
     #     # kubernetes.io/tls-acme: "true"
     # tls:
   persistence:
-    enabled: true
+    enabled: false # change to true if a persistent volume is available and configured manually.
     godata:
       name: "godata-pvc"
       accessMode: ReadWriteOnce
