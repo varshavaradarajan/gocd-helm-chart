@@ -36,7 +36,9 @@ spec:
             mountPath: /godata
           - name: homego-vol
             mountPath: /home/go
-    {{- if .Values.nodeSelector }}
+          resources:
+{{ toYaml .Values.server.resources | indent 12 }}
+    {{- if .Values.server.nodeSelector }}
       nodeSelector:
 {{ toYaml .Values.server.nodeSelector | indent 8 }}
     {{- end }}

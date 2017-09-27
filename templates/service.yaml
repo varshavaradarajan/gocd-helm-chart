@@ -3,7 +3,10 @@ kind: Service
 metadata:
   name: {{ .Values.server.name }}-service
   labels:
-    app: {{ template "name" . }}
+    app: {{ .Values.server.name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    role: server
 spec:
   type: {{ .Values.server.service.type }}
   ports:
@@ -17,5 +20,5 @@ spec:
       protocol: TCP
       name: https
   selector:
-    app: {{ template "name" . }}
+    app: {{ .Values.server.name }}
     role: server

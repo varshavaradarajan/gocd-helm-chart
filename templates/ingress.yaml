@@ -2,9 +2,12 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ .Values.server.ingress.name }}
+  name: {{ .Values.server.name }}-ingress
   labels:
-    app: {{ template "name" . }}
+    app: {{ .Values.server.name }}
+    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
+    release: {{ .Release.Name }}
+    role: server
   annotations:
     {{- range $key, $value := .Values.server.ingress.annotations }}
       {{ $key }}: {{ $value | quote }}
