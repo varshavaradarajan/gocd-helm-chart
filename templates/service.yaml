@@ -4,8 +4,6 @@ metadata:
   name: {{ .Chart.Name }}-server-service
   labels:
     app: {{ .Chart.Name }}-server
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
     role: server
 spec:
   type: {{ .Values.server.service.type }}

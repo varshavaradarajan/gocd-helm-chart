@@ -5,8 +5,6 @@ metadata:
   name: {{ .Chart.Name }}-server-ingress
   labels:
     app: {{ .Chart.Name }}-server
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
     role: server
   annotations:
     {{- range $key, $value := .Values.server.ingress.annotations }}

@@ -4,8 +4,6 @@ metadata:
   name: {{ .Chart.Name }}-agent-deployment
   labels:
     app: {{ .Chart.Name }}-agent
-    chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-    release: {{ .Release.Name }}
     role: agent
 spec:
   replicas: {{ .Values.agent.replicaCount }}
@@ -13,8 +11,6 @@ spec:
     metadata:
       labels:
         app: {{ .Chart.Name }}-agent
-        chart: {{ .Chart.Name }}-{{ .Chart.Version | replace "+" "_" }}
-        release: {{ .Release.Name }}
         role: agent
     spec:
       containers:
