@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.agent.name }}
-          image: "{{ .Values.agent.image.repository }}:v{{ .Chart.AppVersion }}"
+          image: "{{ .Values.agent.image.repository }}:v{{default .Chart.AppVersion .Values.app.version}}"
           imagePullPolicy: {{ .Values.agent.image.pullPolicy }}
           resources:
 {{ toYaml .Values.server.resources | indent 12 }}
